@@ -67,17 +67,18 @@ namespace AtataPoc
 
 
             var apath = Path.Combine(_folderName);
-            var ap = Directory.GetParent(path);
-            var at = Directory.GetParent(p.FullName);
+            var ap = Directory.GetParent(apath);
+            var at = Directory.GetParent(ap.FullName);
+            var att = Directory.GetParent(at.FullName);
 
-            using (StreamWriter sw = File.CreateText($"{at}\\test.txt"))
+            using (StreamWriter sw = File.CreateText($"{att}\\test2.txt"))
             {
                 sw.WriteLine("Hello");
                 sw.WriteLine("And");
                 sw.WriteLine("Welcome");
             }
 
-            TestContext.AddResultFile($"{at}\\test.txt");
+            TestContext.AddResultFile($"{att}\\test2.txt");
 
 
 
@@ -86,7 +87,7 @@ namespace AtataPoc
 
             var dir = Environment.GetEnvironmentVariable("Agent.TempDirectory");
 
-            throw new Exception($"cus: {dir} and + and {_folderName} and + and {t} and + and {at}");
+            throw new Exception($"cus: {dir} and + and {_folderName} and + and {t} and + and {att}");
         }
     }
 }
