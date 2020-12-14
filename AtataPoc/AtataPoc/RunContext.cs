@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace AtataPoc
 {
@@ -49,17 +50,43 @@ namespace AtataPoc
                 //TestContext.AddResultFile($"{_folderName}\\01 - Test page - Failure.png");
             //}
 
+            
+
+            var path = Path.Combine(_folderName);
+            var p = Directory.GetParent(path);
+            var t = Directory.GetParent(p.FullName);
+
+            using (StreamWriter sw = File.CreateText($"{t}\\test.txt"))
+            {
+                sw.WriteLine("Hello");
+                sw.WriteLine("And");
+                sw.WriteLine("Welcome");
+            }
+
+            TestContext.AddResultFile($"{t}\\test.txt");
+
+
+            var apath = Path.Combine(_folderName);
+            var ap = Directory.GetParent(path);
+            var at = Directory.GetParent(p.FullName);
+
+            using (StreamWriter sw = File.CreateText($"{at}\\test.txt"))
+            {
+                sw.WriteLine("Hello");
+                sw.WriteLine("And");
+                sw.WriteLine("Welcome");
+            }
+
+            TestContext.AddResultFile($"{at}\\test.txt");
+
+
+
+
             AtataContext.Current?.CleanUp();
 
             var dir = Environment.GetEnvironmentVariable("Agent.TempDirectory");
 
-            Console.WriteLine("test dir: " + dir);
-            Debug.WriteLine("test dir: " + dir);
-
-            Console.WriteLine(_folderName);
-            Debug.WriteLine(_folderName);
-
-            throw new Exception($"cus: {dir} + {_folderName}");
+            throw new Exception($"cus: {dir} and + and {_folderName} and + and {t} and + and {at}");
         }
     }
 }
