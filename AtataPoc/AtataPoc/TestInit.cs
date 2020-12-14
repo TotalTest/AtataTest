@@ -14,6 +14,7 @@ namespace AtataPoc
         public static void Init(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext context)
         {
             AtataContext.GlobalConfiguration
+                //UseChrome()
                 .UseChrome().WithDriverPath(Environment.GetEnvironmentVariable("ChromeWebDriver"))
                 .UseFirefox().WithDriverPath(Environment.GetEnvironmentVariable("GeckoWebDriver"))
                 .UseInternetExplorer().WithDriverPath(Environment.GetEnvironmentVariable("IEWebDriver"))

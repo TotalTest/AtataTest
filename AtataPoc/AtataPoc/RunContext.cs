@@ -1,5 +1,7 @@
 ﻿using Atata;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Diagnostics;
 
 namespace AtataPoc
 {
@@ -43,11 +45,19 @@ namespace AtataPoc
         {
             //if (AtataContext.Current.AssertionResults.Count > 0)
             //{
-                AtataContext.Current.Log.Screenshot("Failure");
-                TestContext.AddResultFile($"{_folderName}\\01 - Test page - Failure.png");
+                //AtataContext.Current.Log.Screenshot("Failure");
+                //TestContext.AddResultFile($"{_folderName}\\01 - Test page - Failure.png");
             //}
 
             AtataContext.Current?.CleanUp();
+
+            var dir = Environment.GetEnvironmentVariable("Agent.TempDirectory");
+
+            Console.WriteLine("test dir: " + dir);
+            Debug.WriteLine("test dir: " + dir);
+
+            Console.WriteLine(_folderName);
+            Debug.WriteLine(_folderName);
         }
     }
 }
