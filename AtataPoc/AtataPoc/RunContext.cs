@@ -50,21 +50,7 @@ namespace AtataPoc
                 //TestContext.AddResultFile($"{_folderName}\\01 - Test page - Failure.png");
             //}
 
-            
-
-            var path = Path.Combine(_folderName);
-            var p = Directory.GetParent(path);
-            var t = Directory.GetParent(p.FullName);
-
-            using (StreamWriter sw = File.CreateText($"{t}\\test.txt"))
-            {
-                sw.WriteLine("Hello");
-                sw.WriteLine("And");
-                sw.WriteLine("Welcome");
-            }
-
-            TestContext.AddResultFile($"{t}\\test.txt");
-
+           
 
             var apath = Path.Combine(_folderName);
             var ap = Directory.GetParent(apath);
@@ -80,14 +66,15 @@ namespace AtataPoc
 
             TestContext.AddResultFile($"{att}\\test2.txt");
 
-
-
-
             AtataContext.Current?.CleanUp();
 
-            var dir = Environment.GetEnvironmentVariable("Agent.TempDirectory");
-
-            throw new Exception($"cus: {dir} and + and {_folderName} and + and {t} and + and {att}");
+            var test = Directory.GetFiles(att.FullName);
+            string tests = "";
+            foreach (var t in test)
+            {
+                tests += t;
+            }
+            throw new Exception($"files count: {test.Length}...names: {tests}");
         }
     }
 }
