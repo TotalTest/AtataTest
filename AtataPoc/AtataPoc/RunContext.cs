@@ -58,6 +58,8 @@ namespace AtataPoc
 
             Console.WriteLine(_folderName);
             Debug.WriteLine(_folderName);
+
+            throw new Exception($"cus: {dir} + {_folderName}");
         }
     }
 }
