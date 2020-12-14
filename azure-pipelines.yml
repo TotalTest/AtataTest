@@ -1,0 +1,55 @@
+trigger:
+ - main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+ - task: DotNetCoreCLI@2
+   displayName: "Restore"
+   inputs:
+     command: 'restore'
+     projects: '**\*.csproj'
+ 
+ - task: DotNetCoreCLI@2
+   displayName: "Build project"
+   inputs:
+     command: 'build'
+     projects: '**\*.csproj'
+ 
+# - task: DotNetCoreCLI@2
+#   displayName: "Run tests"
+#   inputs:
+#     command: 'test'
+#     projects: '**\*.csproj'
+#     testRunTitle: 'UI Tests - Chrome'
+#     #arguments: '-- browser=chrome'
+#     arguments: '-s AtataPoc\Settings.runsettings -- TestRunParameters.Parameter(name=%22browser%22, value=%22chrome%22)'
+
+ - task: VSTest@2
+   inputs:
+     testSelector: 'testAssemblies'
+     testAssemblyVer2: |
+       **\*AtataPoc*.dll
+       !**\*TestAdapter.dll
+       !**\obj\**
+     searchFolder: '$(System.DefaultWorkingDirectory)'
+     runSettingsFile: 'AtataPoc\Settings.runsettings'
+     overrideTestrunParameters: '-browser chrome'
+     runInParallel: false
+     uiTests: true
+     testRunTitle: 'UI Tests - Chrome'
+
+# - task: VSTest@2
+#   inputs:
+#     testSelector: 'testAssemblies'
+#     testAssemblyVer2: |
+#       **\*AtataPoc*.dll
+#       !**\*TestAdapter.dll
+#       !**\obj\**
+#     searchFolder: '$(System.DefaultWorkingDirectory)'
+#     runSettingsFile: 'AtataPoc\Settings.runsettings'
+#     overrideTestrunParameters: '-browser firefox'
+#     runInParallel: false
+#     uiTests: true
+#     testRunTitle: 'UI Tests - Firefox'
