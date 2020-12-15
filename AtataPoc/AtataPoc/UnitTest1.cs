@@ -10,7 +10,12 @@ namespace AtataPoc
         public void HappyTest()
         {
             Go.To<TestPage>();
+        }
 
+        [TestMethod]
+        public void AnotherTest()
+        {
+            Go.To<AnotherPage>();
         }
     }
 }

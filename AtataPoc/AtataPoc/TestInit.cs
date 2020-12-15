@@ -14,10 +14,10 @@ namespace AtataPoc
         public static void Init(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext context)
         {
             AtataContext.GlobalConfiguration
-                //.UseChrome()
-                .UseChrome().WithDriverPath(Environment.GetEnvironmentVariable("ChromeWebDriver"))
-                .UseFirefox().WithDriverPath(Environment.GetEnvironmentVariable("GeckoWebDriver"))
-                .UseInternetExplorer().WithDriverPath(Environment.GetEnvironmentVariable("IEWebDriver"))
+                .UseChrome()
+                //.UseChrome().WithDriverPath(Environment.GetEnvironmentVariable("ChromeWebDriver"))
+                //.UseFirefox().WithDriverPath(Environment.GetEnvironmentVariable("GeckoWebDriver"))
+                //.UseInternetExplorer().WithDriverPath(Environment.GetEnvironmentVariable("IEWebDriver"))
                 .UseBaseUrl("https://google.co.uk");
         }
     }

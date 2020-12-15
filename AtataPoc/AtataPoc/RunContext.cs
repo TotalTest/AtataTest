@@ -11,19 +11,25 @@ namespace AtataPoc
     {
         public TestContext TestContext { get; set; }
 
+        private static readonly string BaseFile = $@"Logs\{DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss")}";
         private string _folderName;
 
         [TestInitialize]
         public void Start()
         {
+            _folderName = @$"{BaseFile}\{TestContext.TestName}";
+
             var browser = TestContext.Properties["browser"]?.ToString() ?? "chrome";
-            AtataContext.Configure()
+            var test = AtataContext.Configure()
                 .UseTestName(TestContext.TestName)
                 .UseDriver(DriverAlias(browser))
-                .AddScreenshotFileSaving().WithFolderPath(() => $@"{TestContext.TestResultsDirectory}\{AtataContext.Current.TestName}")//.WithFileName(a => $"Image_{a.Number}")
+                .AddScreenshotFileSaving().WithFolderPath(_folderName)
+                .WithFileName(screenshotInfo => $"{screenshotInfo.Number:D2} - {screenshotInfo.PageObjectFullName}{screenshotInfo.Title?.Prepend(" - ")}")
+                .AddConsoleLogging()
+                //.AddScreenshotFileSaving().WithFolderPath(() => $@"{TestContext.TestResultsDirectory}\{AtataContext.Current.TestName}")//.WithFileName(a => $"Image_{a.Number}")
                 .Build();
 
-            _folderName = $@"{TestContext.TestResultsDirectory}\{AtataContext.Current.TestName}";
+
         }
 
         private string DriverAlias(string browser)
@@ -44,37 +50,45 @@ namespace AtataPoc
         [TestCleanup]
         public void End()
         {
-            //if (AtataContext.Current.AssertionResults.Count > 0)
+            //if (TestContext.CurrentTestOutcome == UnitTestOutcome.Error || TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
             //{
-                //AtataContext.Current.Log.Screenshot("Failure");
-                //TestContext.AddResultFile($"{_folderName}\\01 - Test page - Failure.png");
+                AtataContext.Current?.Log.Screenshot("Failure");
+            //TestContext.AddResultFile($"{_folderName}\\01 - Test page - Failure.png");
             //}
 
-           
+            
+            AtataContext.Current?.Log.Screenshot("Two");
 
-            var apath = Path.Combine(_folderName);
-            var ap = Directory.GetParent(apath);
-            var at = Directory.GetParent(ap.FullName);
-            var att = Directory.GetParent(at.FullName);
+            var files = Directory.GetFiles(_folderName);
 
-            using (StreamWriter sw = File.CreateText($"{att}\\test2.txt"))
+            foreach (var f in files)
             {
-                sw.WriteLine("Hello");
-                sw.WriteLine("And");
-                sw.WriteLine("Welcome");
+                TestContext.AddResultFile(f);
             }
 
-            TestContext.AddResultFile($"{att}\\test2.txt");
+            //var apath = Path.Combine(_folderName);
+            //var ap = Directory.GetParent(apath);
+            //var at = Directory.GetParent(ap.FullName);
+            //var att = Directory.GetParent(at.FullName);
+            //
+            //using (StreamWriter sw = File.CreateText($"{att}\\test2.txt"))
+            //{
+            //    sw.WriteLine("Hello");
+            //    sw.WriteLine("And");
+            //    sw.WriteLine("Welcome");
+            //}
+            //
+            //TestContext.AddResultFile($"{att}\\test2.txt");
 
             AtataContext.Current?.CleanUp();
 
-            var test = Directory.GetFiles(att.FullName);
-            string tests = "";
-            foreach (var t in test)
-            {
-                tests += t;
-            }
-            throw new Exception($"files count: {test.Length}...names: {tests}");
+            //var test = Directory.GetFiles(att.FullName);
+            //string tests = "";
+            //foreach (var t in test)
+            //{
+            //    tests += t;
+            //}
+            //throw new Exception($"files count: {test.Length}...names: {tests}");
         }
     }
 }
