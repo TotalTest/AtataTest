@@ -9,7 +9,9 @@ namespace AtataPoc
         [TestMethod]
         public void HappyTest()
         {
-            Go.To<TestPage>();
+            var title = Go.To<TestPage>().PageTitle;
+
+            Assert.AreEqual("as", title);
         }
 
         [TestMethod]
