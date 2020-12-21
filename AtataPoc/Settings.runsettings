@@ -17,4 +17,10 @@
     <TestRunParameters>
     <Parameter name="browser" value="test" />
   </TestRunParameters>
+
+  <MSTest>
+    <MapInconclusiveToFailed>false</MapInconclusiveToFailed>
+    <CaptureTraceOutput>false</CaptureTraceOutput>
+    <DeleteDeploymentDirectoryAfterTestRunIsComplete>false</DeleteDeploymentDirectoryAfterTestRunIsComplete>
+  </MSTest>
 </RunSettings>
