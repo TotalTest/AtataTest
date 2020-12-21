@@ -53,3 +53,16 @@ steps:
      runInParallel: false
      uiTests: true
      testRunTitle: 'UI Tests - Firefox'
+
+ - task: VSTest@2
+   inputs:
+     testSelector: 'testAssemblies'
+     testAssemblyVer2: |
+       **\*AtataPoc*.dll
+       !**\*TestAdapter.dll
+       !**\obj\**
+     searchFolder: '$(System.DefaultWorkingDirectory)'
+     runSettingsFile: 'AtataPoc\Settings.runsettings'
+     runInParallel: false
+     uiTests: true
+     testRunTitle: 'UI Tests - Test'
