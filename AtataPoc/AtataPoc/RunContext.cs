@@ -43,7 +43,7 @@ namespace AtataPoc
                 case "ie":
                     return DriverAliases.InternetExplorer;
                 default:
-                    return DriverAliases.Chrome;
+                    throw new Exception("no browser");
             }
         }
 
