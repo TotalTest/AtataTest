@@ -34,7 +34,7 @@ steps:
        !**\*TestAdapter.dll
        !**\obj\**
      searchFolder: '$(System.DefaultWorkingDirectory)'
-     #runSettingsFile: 'AtataPoc\Settings.runsettings'
+     runSettingsFile: 'AtataPoc\Settings.runsettings'
      overrideTestrunParameters: '-browser chrome'
      runInParallel: false
      uiTests: true
