@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RunSettingsFilePath>$(MSBuildProjectDirectory)\AtataPoc\Settings.runsettings</RunSettingsFilePath>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
