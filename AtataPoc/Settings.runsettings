@@ -18,7 +18,7 @@
     <Parameter name="browser" value="test" />
   </TestRunParameters>
 
-  <!--<LoggerRunSettings>
+  <LoggerRunSettings>
     <Loggers>
       <Logger friendlyName="console" enabled="True">
         <Configuration>
@@ -26,7 +26,7 @@
         </Configuration>
       </Logger>
     </Loggers>
-  </LoggerRunSettings>-->
+  </LoggerRunSettings>
 
   <MSTest>
     <Parallelize>
