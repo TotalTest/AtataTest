@@ -25,20 +25,14 @@
           <Verbosity>quiet</Verbosity>
         </Configuration>
       </Logger>
-      <Logger friendlyName="trx" enabled="True">
-        <Configuration>
-          <LogFileName>foo.trx</LogFileName>
-        </Configuration>
-      </Logger>
-      <Logger friendlyName="html" enabled="True">
-        <Configuration>
-          <LogFileName>foo.html</LogFileName>
-        </Configuration>
-      </Logger>
     </Loggers>
   </LoggerRunSettings>
 
   <MSTest>
+    <Parallelize>
+      <Workers>2</Workers>
+      <Scope>MethodLevel</Scope>
+    </Parallelize>
     <MapInconclusiveToFailed>false</MapInconclusiveToFailed>
     <CaptureTraceOutput>false</CaptureTraceOutput>
     <DeleteDeploymentDirectoryAfterTestRunIsComplete>false</DeleteDeploymentDirectoryAfterTestRunIsComplete>
