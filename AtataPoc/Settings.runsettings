@@ -19,8 +19,9 @@
   </TestRunParameters>
 
   <MSTest>
-    <MapInconclusiveToFailed>false</MapInconclusiveToFailed>
-    <CaptureTraceOutput>true</CaptureTraceOutput>
-    <DeleteDeploymentDirectoryAfterTestRunIsComplete>false</DeleteDeploymentDirectoryAfterTestRunIsComplete>
+    <Parallelize>
+      <Workers>2</Workers>
+      <Scope>MethodLevel</Scope>
+    </Parallelize>
   </MSTest>
 </RunSettings>
