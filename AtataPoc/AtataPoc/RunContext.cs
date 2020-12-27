@@ -11,13 +11,13 @@ namespace AtataPoc
     {
         public TestContext TestContext { get; set; }
 
-        private static readonly string BaseFile = $@"Logs\{DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss")}";
+        //private static readonly string BaseFile = $@"Logs\{DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss")}";
         private string _folderName;
 
         [TestInitialize]
         public void Start()
         {
-            _folderName = @$"{BaseFile}\{TestContext.TestName}";
+            _folderName = @$"{TestContext.ResultsDirectory}\{TestContext.TestName}";
 
             var browser = TestContext.Properties["browser"]?.ToString() ?? "chrome";
             var test = AtataContext.Configure()

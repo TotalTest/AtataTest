@@ -17,14 +17,14 @@ namespace AtataPoc
             var baseurl = context.Properties["baseurl"]?.ToString();
             var custom = context.Properties["custom"]?.ToString();
 
-            throw new Exception($"params: {browser} : {baseurl} : {custom}");
+            //throw new Exception($"params: {browser} : {baseurl} : {custom}");
 
 
             AtataContext.GlobalConfiguration
-                //.UseChrome()
-                .UseChrome().WithDriverPath(Environment.GetEnvironmentVariable("ChromeWebDriver"))
-                .UseFirefox().WithDriverPath(Environment.GetEnvironmentVariable("GeckoWebDriver"))
-                .UseInternetExplorer().WithDriverPath(Environment.GetEnvironmentVariable("IEWebDriver"))
+                .UseChrome()
+                //.UseChrome().WithDriverPath(Environment.GetEnvironmentVariable("ChromeWebDriver"))
+                //.UseFirefox().WithDriverPath(Environment.GetEnvironmentVariable("GeckoWebDriver"))
+                //.UseInternetExplorer().WithDriverPath(Environment.GetEnvironmentVariable("IEWebDriver"))
                 .UseBaseUrl("https://google.co.uk");
         }
     }
