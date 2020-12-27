@@ -16,6 +16,8 @@
 
   <TestRunParameters>
     <Parameter name="browser" value="test" />
+    <Parameter name="baseurl" value="local" />
+    <Parameter name="custom" value="name" />
   </TestRunParameters>
 
   <MSTest>

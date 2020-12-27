@@ -13,6 +13,13 @@ namespace AtataPoc
         [AssemblyInitialize]
         public static void Init(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext context)
         {
+            var browser = context.Properties["browser"]?.ToString();
+            var baseurl = context.Properties["baseurl"]?.ToString();
+            var custom = context.Properties["custom"]?.ToString();
+
+            throw new Exception($"params: {browser} : {baseurl} : {custom}");
+
+
             AtataContext.GlobalConfiguration
                 //.UseChrome()
                 .UseChrome().WithDriverPath(Environment.GetEnvironmentVariable("ChromeWebDriver"))

@@ -35,7 +35,7 @@ steps:
        !**\obj\**
      searchFolder: '$(System.DefaultWorkingDirectory)'
      runSettingsFile: 'AtataPoc\Settings.runsettings'
-     overrideTestrunParameters: '-browser chrome'
+     overrideTestrunParameters: '-browser chrome -baseurl azure -custom prab'
      runInParallel: false
      uiTests: true
      testRunTitle: 'UI Tests - Chrome'
