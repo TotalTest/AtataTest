@@ -25,7 +25,7 @@ namespace AtataPoc
                 .UseDriver(DriverAlias(browser))
                 .AddScreenshotFileSaving().WithFolderPath(_folderName)
                 .WithFileName(screenshotInfo => $"{screenshotInfo.Number:D2} - {screenshotInfo.PageObjectFullName}{screenshotInfo.Title?.Prepend(" - ")}")
-                .AddConsoleLogging()
+                .AddLogConsumer(new TextOutputLogConsumer(TestContext.WriteLine))
                 //.AddScreenshotFileSaving().WithFolderPath(() => $@"{TestContext.TestResultsDirectory}\{AtataContext.Current.TestName}")//.WithFileName(a => $"Image_{a.Number}")
                 .Build();
 
