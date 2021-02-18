@@ -52,19 +52,19 @@ namespace AtataPoc
         {
             //if (TestContext.CurrentTestOutcome == UnitTestOutcome.Error || TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
             //{
-                AtataContext.Current?.Log.Screenshot("Failure");
+            //    AtataContext.Current?.Log.Screenshot("Failure");
             //TestContext.AddResultFile($"{_folderName}\\01 - Test page - Failure.png");
             //}
 
             
             AtataContext.Current?.Log.Screenshot("Two");
 
-            var files = Directory.GetFiles(_folderName);
-
-            foreach (var f in files)
+            if (Directory.Exists(_folderName))
             {
-                TestContext.AddResultFile(f);
+                foreach (var f in Directory.GetFiles(_folderName))
+                    TestContext.AddResultFile(f);
             }
+            
 
             //var apath = Path.Combine(_folderName);
             //var ap = Directory.GetParent(apath);
