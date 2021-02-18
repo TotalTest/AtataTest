@@ -22,7 +22,7 @@ namespace AtataPoc
             var browser = TestContext.Properties["browser"]?.ToString() ?? "chrome";
             var test = AtataContext.Configure()
                 .UseTestName(TestContext.TestName)
-                .UseDriver(DriverAlias(browser))
+                //.UseDriver(DriverAlias(browser))
                 .AddScreenshotFileSaving().WithFolderPath(_folderName)
                 .WithFileName(screenshotInfo => $"{screenshotInfo.Number:D2} - {screenshotInfo.PageObjectFullName}{screenshotInfo.Title?.Prepend(" - ")}")
                 .AddLogConsumer(new TextOutputLogConsumer(TestContext.WriteLine))
