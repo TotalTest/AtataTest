@@ -18,6 +18,7 @@ steps:
      projects: '**\*.csproj'
 
  - powershell: testing
+   displayName: pw
  
 # - task: DotNetCoreCLI@2
 #   displayName: "Run tests"
@@ -43,7 +44,8 @@ steps:
      testRunTitle: 'UI Tests - Chrome'
 
  - task: VSTest@2
-   condition: succeededOrFailed()
+   dependsOn: pw
+   #condition: succeededOrFailed()
    inputs:
      testSelector: 'testAssemblies'
      testAssemblyVer2: |
