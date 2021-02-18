@@ -16,6 +16,8 @@ steps:
    inputs:
      command: 'build'
      projects: '**\*.csproj'
+
+ - powershell: testing
  
 # - task: DotNetCoreCLI@2
 #   displayName: "Run tests"
@@ -40,19 +42,20 @@ steps:
      uiTests: true
      testRunTitle: 'UI Tests - Chrome'
 
-# - task: VSTest@2
-#   inputs:
-#     testSelector: 'testAssemblies'
-#     testAssemblyVer2: |
-#       **\*AtataPoc*.dll
-#       !**\*TestAdapter.dll
-#       !**\obj\**
-#     searchFolder: '$(System.DefaultWorkingDirectory)'
-#     #runSettingsFile: 'AtataPoc\Settings.runsettings'
-#     overrideTestrunParameters: '-browser firefox'
-#     runInParallel: false
-#     uiTests: true
-#     testRunTitle: 'UI Tests - Firefox'
+ - task: VSTest@2
+   condition: succeededOrFailed()
+   inputs:
+     testSelector: 'testAssemblies'
+     testAssemblyVer2: |
+       **\*AtataPoc*.dll
+       !**\*TestAdapter.dll
+       !**\obj\**
+     searchFolder: '$(System.DefaultWorkingDirectory)'
+     runSettingsFile: 'AtataPoc\Settings.runsettings'
+     overrideTestrunParameters: '-browser firefox'
+     runInParallel: false
+     uiTests: true
+     testRunTitle: 'UI Tests - Firefox'
 #
 # - task: VSTest@2
 #   inputs:

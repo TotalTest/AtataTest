@@ -6,14 +6,14 @@ namespace AtataPoc
     [TestClass]
     public class UnitTest2
     {
-        [TestMethod, Ignore]
+        [TestMethod]
         public void ATest()
         {
             System.Console.WriteLine("Running test 1");
             Assert.AreEqual(1, 2);
         }
 
-        [TestMethod, Ignore]
+        [TestMethod]
         [TestCategory("mas")]
         public void BTest()
         {

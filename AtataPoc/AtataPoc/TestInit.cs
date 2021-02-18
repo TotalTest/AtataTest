@@ -1,5 +1,4 @@
 ﻿using Atata;
-using Atata.WebDriverSetup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections;
@@ -20,13 +19,13 @@ namespace AtataPoc
 
             //throw new Exception($"params: {browser} : {baseurl} : {custom}");
 
-            DriverSetup.AutoSetUp(BrowserNames.Chrome);
+            //DriverSetup.AutoSetUp(BrowserNames.Chrome);
 
             
 
             AtataContext.GlobalConfiguration
                 .UseBaseUrl("https://google.co.uk")
-                .UseDriver(DriverAliases.Chrome)
+                .UseDriver(browser)
                 .AutoSetUpConfiguredDrivers();
                 //.UseChrome()
                 //.AutoSetUpDriverToUse();
