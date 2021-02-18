@@ -14,6 +14,7 @@ namespace AtataPoc
         }
 
         [TestMethod, Ignore]
+        [TestCategory("mas")]
         public void BTest()
         {
             System.Console.WriteLine("Running test 2");
