@@ -17,8 +17,7 @@ steps:
      command: 'build'
      projects: '**\*.csproj'
 
- - powershell: testing
-   displayName: pw
+ - powershell: echo test
  
 # - task: DotNetCoreCLI@2
 #   displayName: "Run tests"
