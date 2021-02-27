@@ -1,1 +1,1 @@
-Write-Host "##vso[task.setvariable variable=isTrue;]false"
+Write-Host "##vso[task.setvariable variable=isTrue;]true"
