@@ -48,7 +48,7 @@ steps:
      rerunMaxAttempts: '2'
 
  - task: VSTest@2
-   condition: and(succeededOrFailed(), eq(variables['Key'], 'isTrue'))
+   condition: and(succeededOrFailed(), eq(variables['isTrue'], 'true'))
    inputs:
      testSelector: 'testAssemblies'
      testAssemblyVer2: |
