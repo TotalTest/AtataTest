@@ -20,7 +20,7 @@ steps:
      command: 'build'
      projects: '**\*.csproj'
 
- - powershell: Write-Host "##vso[task.setvariable variable=isTrue;]true"
+ - powershell: Write-Host "##vso[task.setvariable variable=isTrue;]false"
  
 # - task: DotNetCoreCLI@2
 #   displayName: "Run tests"
@@ -45,6 +45,7 @@ steps:
      uiTests: true
      testRunTitle: 'UI Tests - Chrome'
      rerunFailedTests: true
+     rerunFailedThreshold: '30'
      rerunMaxAttempts: '2'
 
  - task: VSTest@2
