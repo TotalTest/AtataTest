@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
+variables:
+  isTrue: false
+
 steps:
  - task: DotNetCoreCLI@2
    displayName: "Restore"
@@ -17,7 +20,7 @@ steps:
      command: 'build'
      projects: '**\*.csproj'
 
- - powershell: test
+ - powershell: Write-Host "##vso[task.setvariable variable=isTrue;]true"
  
 # - task: DotNetCoreCLI@2
 #   displayName: "Run tests"
@@ -29,7 +32,6 @@ steps:
 #     arguments: '-s AtataPoc\Settings.runsettings -- TestRunParameters.Parameter(name=%22browser%22, value=%22chrome%22)'
 
  - task: VSTest@2
-   continueOnError: true 
    inputs:
      testSelector: 'testAssemblies'
      testAssemblyVer2: |
@@ -42,9 +44,11 @@ steps:
      runInParallel: false
      uiTests: true
      testRunTitle: 'UI Tests - Chrome'
+     rerunFailedTests: true
+     rerunMaxAttempts: '2'
 
  - task: VSTest@2
-   #condition: succeededOrFailed()
+   condition: and(succeededOrFailed(), eq(variables['Key'], 'isTrue'))
    inputs:
      testSelector: 'testAssemblies'
      testAssemblyVer2: |
