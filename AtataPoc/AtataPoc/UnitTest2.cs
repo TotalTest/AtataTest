@@ -6,7 +6,7 @@ namespace AtataPoc
     [TestClass]
     public class UnitTest2
     {
-        [TestMethod]
+        [TestMethod, Ignore]
         public void ATest()
         {
             System.Console.WriteLine("Running test 1");
